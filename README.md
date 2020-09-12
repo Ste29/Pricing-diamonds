@@ -6,7 +6,7 @@
 * [Data analysis](#Data-analysis)
 
 ## General info
-Classic machine learning approaches tested on diamond dataset from [Kaggle](https://www.kaggle.com/shivam2503/diamonds/home)
+Classic machine learning approaches tested on diamond dataset from [Kaggle](https://www.kaggle.com/shivam2503/diamonds/home), to test the script just download the entire folder and put inside the diamond dataset.
 	
 ## Loading
 Data are loaded using [loading.m](https://github.com/Ste29/Pricing-diamonds/blob/master/loading.m), which also checks for NaNs, outliers and output dataset and a table with general statistics about data.
