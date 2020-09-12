@@ -35,7 +35,7 @@ plot(a,b), title('Linear regression using raw data')
 X = [Dataset(:,1:6) Dataset(:,8).*Dataset(:,9).*Dataset(:,10)/3]; 
 
 % Uso come riferimento per allenare la regressione il log del prezzo e tra
-% le variabili di ingresso log del carat, questo serve per rendere più
+% le variabili di ingresso log del carat, questo serve per rendere piÃ¹
 % lineare possibile il rapporto tra le feature e l'output desiderato e
 % quindi migliorare le prestazioni
 
@@ -57,13 +57,13 @@ title('LR using log10(price), log10(carat) and volum')
 %% LR dividendo i campioni in cluster
 
 % Abbiamo notato che nel log(price) si distinguevano bene 2 gaussiane,
-% quindi ci siamo chiesti se queste gaussiane fossero individuabili già
+% quindi ci siamo chiesti se queste gaussiane fossero individuabili giÃ 
 % dalle feature. Per farlo abbiamo fatto un kmeans sulle feature.
 % Poi abbiamo allenato 2 diverse regressioni, una per la prima gaussiana e
 % una per la seconda gaussiana
 % Per valutare il test set abbiamo preso ogni campione, lo abbiamo
 % assegnato al cluster di appartenenza scegliendolo in base a quale
-% centroide era più vicino (norma L2) e poi lo abbiamo valutato usando la
+% centroide era piÃ¹ vicino (norma L2) e poi lo abbiamo valutato usando la
 % regressione allenata su quel cluster
 
 figure,subplot(121), histogram(log10(y)), title('Histogram log10(price)')
