@@ -3,7 +3,7 @@
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#Loading)
-* [Setup](#Data-analysis)
+* [Data analysis](#Data-analysis)
 
 ## General info
 Classic machine learning approaches tested on diamond dataset from [Kaggle](https://www.kaggle.com/shivam2503/diamonds/home)
