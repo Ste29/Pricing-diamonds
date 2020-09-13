@@ -37,3 +37,8 @@ The first step is to study features distribution, then how features influence th
 In [Data_analysis.m](https://github.com/Ste29/Pricing-diamonds/blob/master/scripts/Data_analysis.m) there are also boxplots and scatter matrixes.
 
 ## Linear regression
+
+Three different models were trained:
+- Regression with raw data
+- Regression with log10(price), log10(carat) and volume: Diamonds are approximated with a pyramid, therefore starting from their physical features a new one is created: volume. In order to boost linear regression performances the relation needs to be as linear as possible, therefore log(carat) and log(price) are used
+- Regression with clustering: In log(price) it is possible to notice 2 distincted gaussian distributions, therefore it was tried to cluster the diamonds based only on their features. To do this it was made a kmeans on features. Then 2 different regressions were trained, one for the first Gaussian and one for the second. To evaluate the test set each sample was assigned to its cluster choosing according to which centroid was closest (L2 standard) and then it was evaluated using the trained regression on that cluster
