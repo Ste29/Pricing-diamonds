@@ -25,7 +25,7 @@ Data are loaded using [loading.m](https://github.com/Ste29/Pricing-diamonds/blob
 
 The first step is to study features distribution, then how features influence the price. Lastly, it is possible to notice price has a lognormal distribution, this is a common distribution in money-related datasets. Indeed, it is possible to determine 2 types of diamonds, those that are bought by the general public for big occasions (i.e. weddings), therefore they have lower prices, and those bought by the richer one. Given the price distribution, it is useful to consider log10(price) in order to linearize the relations.
 
-- Features distribution 
+- Features distribution
 ![feat_dist](https://github.com/Ste29/Pricing-diamonds/blob/master/img/features_distrib.png)
 - Features vs price
 ![feat_price](https://github.com/Ste29/Pricing-diamonds/blob/master/img/Feat_vs_price.png)
