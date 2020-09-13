@@ -42,13 +42,13 @@ In [Data_analysis.m](https://github.com/Ste29/Pricing-diamonds/blob/master/scrip
 ## Linear regression
 
 Three different models were trained:
-- Regression with raw data
+- LR1: Regression with raw data
 ![lr1](https://github.com/Ste29/Pricing-diamonds/blob/master/img/LR1.png)
 
-- Regression with log10(price) as a reference, log10(carat) and volume: Diamonds are approximated with a pyramid, therefore starting from their physical features a new one is created: volume. In order to boost linear regression performances, the relationship needs to be as linear as possible, therefore log(carat) and log(price) are used
+- LR2: Regression with log10(price) as a reference, log10(carat) and volume. Diamonds are approximated with a pyramid, therefore starting from their physical features a new one is created: volume. In order to boost linear regression performances, the relationship needs to be as linear as possible, therefore log(carat) and log(price) are used
 ![lr2](https://github.com/Ste29/Pricing-diamonds/blob/master/img/LR2.png)
 
-- Regression with clustering: In log(price) it is possible to notice 2 distinct Gaussian distributions, therefore diamonds were clustered basing only on their features. To do this it was made a kmeans on features. Then 2 different regressions were trained, one for the first Gaussian and one for the second. To evaluate the test set each sample was assigned to its cluster choosing according to which centroid was closest (L2 standard) and then it was evaluated using the trained regression on that cluster
+- LR3: Regression with clustering. In log(price) it is possible to notice 2 distinct Gaussian distributions, therefore diamonds were clustered basing only on their features. To do this it was made a kmeans on features. Then 2 different regressions were trained, one for the first Gaussian and one for the second. To evaluate the test set each sample was assigned to its cluster choosing according to which centroid was closest (L2 standard) and then it was evaluated using the trained regression on that cluster
 ![kmeams](https://github.com/Ste29/Pricing-diamonds/blob/master/img/cluster.jpg)
 
 ![lr3](https://github.com/Ste29/Pricing-diamonds/blob/master/img/LR3.png)
