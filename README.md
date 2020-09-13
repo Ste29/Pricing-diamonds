@@ -26,6 +26,7 @@ The first step is to study features distribution, then how features influence th
 
 - Features distribution 
 - Features vs price
+![feat](https://github.com/Ste29/Pricing-diamonds/blob/master/img/Feat_vs_price.tif)
 - Price distribution
 - Categorical features
 
