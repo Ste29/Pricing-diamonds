@@ -22,22 +22,21 @@ yvalid = y(permutazione(numTest+1:end));
 Linea1 = Xtrain;
 md1 = fitlm(Linea1, ytrain);
 y_pred1 = predict(md1, Xvalid);
-ms1 = mse(y_pred1,yvalid);
+rms1 = sqrt(mse(y_pred1,yvalid));
 
 figure, scatter(yvalid,y_pred1,sz),xlabel('true price'), ylabel('predicted price')
 hold on
 a = [0 20000]; b = [0 20000]; 
 plot(a,b), title('Linear regression using raw data')
 
-%%  LR usando log10(price), log10(carat) e volume
+%%  LR with log10(price), log10(carat) and volume
 
-% Creo una feature volume (approssimato ad una piramide) usando x,y e z
+% Diamonds are approximated with a pyramid, therefore starting from their
+% physical features a new one is created: volume
 X = [Dataset(:,1:6) Dataset(:,8).*Dataset(:,9).*Dataset(:,10)/3]; 
 
-% Uso come riferimento per allenare la regressione il log del prezzo e tra
-% le variabili di ingresso log del carat, questo serve per rendere più
-% lineare possibile il rapporto tra le feature e l'output desiderato e
-% quindi migliorare le prestazioni
+% In order to boost linear regression performances the relation needs to be
+% as linear as possible, therefore log(carat) and log(price) are used
 
 Xtrain = X(permutazione(1:numTest),:);
 Xvalid = X(permutazione(numTest+1:end),:);
@@ -46,7 +45,7 @@ valid2 = [log10(Xvalid(:,1)) Xvalid(:,2:end)];
 Linea2 = [log10(Xtrain(:,1)) Xtrain(:,2:end)];
 md2 = fitlm(Linea2, log10(ytrain));
 y_pred2 = predict(md2, valid2);
-ms2 = mse(10.^(y_pred2),yvalid);
+rms2 = sqrt(mse(10.^(y_pred2),yvalid));
 
 figure, scatter(yvalid,10.^(y_pred2),sz),xlabel('true price'), ylabel('predicted price')
 hold on
@@ -54,17 +53,17 @@ a = [0 20000]; b = [0 20000];
 plot(a,b)
 title('LR using log10(price), log10(carat) and volum')
 
-%% LR dividendo i campioni in cluster
+%% LR with clustering
 
-% Abbiamo notato che nel log(price) si distinguevano bene 2 gaussiane,
-% quindi ci siamo chiesti se queste gaussiane fossero individuabili già
-% dalle feature. Per farlo abbiamo fatto un kmeans sulle feature.
-% Poi abbiamo allenato 2 diverse regressioni, una per la prima gaussiana e
-% una per la seconda gaussiana
-% Per valutare il test set abbiamo preso ogni campione, lo abbiamo
-% assegnato al cluster di appartenenza scegliendolo in base a quale
-% centroide era più vicino (norma L2) e poi lo abbiamo valutato usando la
-% regressione allenata su quel cluster
+% In log(price) it is possible to notice 2 distincted gaussian
+% distributions, therefore it was tried to cluster the diamonds based only
+% on their features.
+% To do this it was made a kmeans on features. Then 2 different 
+% regressions were trained, one for the first Gaussian and one for the 
+% second. To evaluate the test set each sample was assigned to its cluster 
+% choosing according to which centroid was closest (L2 standard) and then 
+% it was evaluated using the trained regression on that cluster
+
 
 figure,subplot(121), histogram(log10(y)), title('Histogram log10(price)')
 
@@ -92,7 +91,7 @@ idx2 = idx2';
 validClust1 = [log10(Xvalid(idx2==1,1)) Xvalid(idx2==1,2:end)];
 validClust2 = [log10(Xvalid(idx2==2,1)) Xvalid(idx2==2,2:end)];
 
-% Regressione lineare
+% Linear Regression
 mdClust1 = fitlm(LineaClust1, log10(ytrain(idx1==1)));
 mdClust2 = fitlm(LineaClust2, log10(ytrain(idx1==2)));
 
@@ -102,9 +101,9 @@ y_predtot(idx2==1) = y_predClust1;
 y_predtot(idx2==2) = y_predClust2;
 y_predtot = y_predtot';
 
-msClust1 = immse(10.^(y_predClust1),yvalid(idx2==1));
-msClust2 = immse(10.^(y_predClust2),yvalid(idx2==2));
-mstot = immse(10.^(y_predtot),yvalid);
+rmsClust1 = sqrt(mse(10.^(y_predClust1),yvalid(idx2==1)));
+rmsClust2 = sqrt(mse(10.^(y_predClust2),yvalid(idx2==2)));
+rmstot = sqrt(mse(10.^(y_predtot),yvalid));
 
 figure, subplot(131), scatter(yvalid(idx2==1),10.^(y_predClust1),sz)
 xlabel('true price'), ylabel('predicted price'), hold on
