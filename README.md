@@ -4,12 +4,13 @@
 * [General info](#general-info)
 * [Technologies](#Loading)
 * [Data analysis](#Data-analysis)
+* [Linear regression](#linear-regression)
 
 ## General info
 Classic machine learning approaches tested on diamond dataset from [Kaggle](https://www.kaggle.com/shivam2503/diamonds/home), to test the script just download the entire folder and put inside the diamond dataset.
 	
 ## Loading
-Data are loaded using [loading.m](https://github.com/Ste29/Pricing-diamonds/blob/master/loading.m), which also checks for NaNs, outliers and outputs dataset and a table with general statistics about data. No NaNs were detected, also every diamond with x*y*z (volume) equal to 0 was discarded.
+Data are loaded using [loading.m](https://github.com/Ste29/Pricing-diamonds/blob/master/loading.m), which also checks for NaNs, outliers and outputs dataset and a table with general statistics about data. No NaNs were detected, also every diamond with xyz (volume) equal to 0 was discarded.
 
 | stats       | carat       | cut         | color         |    clarity    |     depth       |    table     |    price    |    x        |        y      |        z      |
 | :----:      |    :----:   |   :----:    |    :----:     |   :----:      |     :----:      |  :----:      |    :----:   |   :----:    |    :----:     |   :----:      |
@@ -25,9 +26,14 @@ Data are loaded using [loading.m](https://github.com/Ste29/Pricing-diamonds/blob
 The first step is to study features distribution, then how features influence the price. Lastly, it is possible to notice price has a lognormal distribution, this is a common distribution in money-related datasets. Indeed, it is possible to determine 2 types of diamonds, those that are bought by the general public for big occasions (i.e. weddings), therefore they have lower prices, and those bought by the richer one. Given the price distribution, it is useful to consider log10(price) in order to linearize the relations.
 
 - Features distribution 
+![feat_dist](https://github.com/Ste29/Pricing-diamonds/blob/master/img/features_distrib.png)
 - Features vs price
-![feat](https://github.com/Ste29/Pricing-diamonds/blob/master/img/Feat_vs_price.png)
+![feat_price](https://github.com/Ste29/Pricing-diamonds/blob/master/img/Feat_vs_price.png)
 - Price distribution
+![price](https://github.com/Ste29/Pricing-diamonds/blob/master/img/price.png)
 - Categorical features
+![price](https://github.com/Ste29/Pricing-diamonds/blob/master/img/categorical_feat.png)
 
 In [Data_analysis.m](https://github.com/Ste29/Pricing-diamonds/blob/master/scripts/Data_analysis.m) there are also boxplots and scatter matrixes.
+
+## Linear regression
