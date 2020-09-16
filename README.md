@@ -2,7 +2,7 @@
 
 ## Table of contents
 * [General info](#general-info)
-* [Technologies](#Loading)
+* [Loading](#Loading)
 * [Data analysis](#Data-analysis)
 * [Linear regression](#linear-regression)
 * [Neural network](#neural-network)
